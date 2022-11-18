@@ -1,0 +1,46 @@
+<section id="authentication">
+  <h1>Autentiquemonos en Github 😉</h1>
+  <form class="form" #form="ngForm" (ngSubmit)="login(form.value)">
+    <div>
+      <label for="username"
+        >Añade un nombre:
+        <input
+          class="form__field"
+          id="username"
+          type="text"
+          placeholder="Añade el nombre de usuario ..."
+          required
+          name="username"
+          [(ngModel)]="model.username"
+        />
+      </label>
+    </div>
+    <button type="submit">Enviar!!</button>
+  </form>
+  <p class="label">Form: {{ model | json }}</p>
+</section>
+<section id="display-data" *ngIf="responseList">
+  <h2>la respuesta es:</h2>
+  <table class="blueTable" id="reposTable">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Language</th>
+        <th>Default Branch</th>
+        <th>Git Url</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let repo of responseList; let i = index">
+        <td>{{ i }}</td>
+        <td>{{ repo['name'] }}</td>
+        <td>{{ repo['description'] }}</td>
+        <td>{{ repo['language'] }}</td>
+        <td>{{ repo['default_branch'] }}</td>
+        <td>{{ repo['git_url'] }}</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
